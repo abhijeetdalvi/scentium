@@ -1,14 +1,16 @@
-const router = require("express").Router();
+const contactRouter = require("express").Router();
+
+const mongoose = require("mongoose");
 
 const isLoggedOut = require("../middleware/isLoggedOut");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
-/* GET contact page */
-router.get("/contact", (req, res) => {
-  res.render("/views/contact/contact");
+contactRouter.get("/contact", isLoggedOut, (req, res) => {
+  res.render("/contact");
 });
 
-router.post("/contact", isLoggedOut, (req, res) => {
-  const { name, email, enquiry } = req.body;
+contactRouter.post("/contact", isLoggedOut, (req, res) => {
+  const { myself, gift } = req.body;
 });
 
-module.exports = router;
+module.exports = contactRouter;
