@@ -1,3 +1,3 @@
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/scentium";
+const MONGO_URL = process.env.MONGODB_URL || "mongodb://localhost/scentium";
 
-module.exports = MONGO_URI;
+module.exports = MONGO_URL;

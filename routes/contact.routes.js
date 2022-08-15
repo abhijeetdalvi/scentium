@@ -4,7 +4,7 @@ const isLoggedOut = require("../middleware/isLoggedOut");
 
 /* GET contact page */
 router.get("/contact", (req, res) => {
-  res.render("/views/contact");
+  res.render("/views/contact/contact");
 });
 
 router.post("/contact", isLoggedOut, (req, res) => {
