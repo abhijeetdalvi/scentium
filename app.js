@@ -31,10 +31,10 @@ const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
 const contactRouter = require("./routes/contact.routes");
-app.use("/", contactRouter);
+app.use("/views", contactRouter);
 
-const wizardRouter = require("./routes/Wizard.routes");
-app.use("/wizard", wizardRouter);
+const baseRouter = require("./routes/Base.routes");
+app.use("/wizard", baseRouter);
 
 const aboutRouter = require("./routes/about.routes");
 app.use("/views", aboutRouter);

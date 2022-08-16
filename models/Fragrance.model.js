@@ -3,30 +3,15 @@ const { Schema, model } = require("mongoose");
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const fragranceSchema = new Schema(
   {
-    type: {
+    base: {
       type: String,
       required: true,
-      enum: ["myself", "gift"],
-    },
-    mood: {
-      type: String,
-      required: true,
-      enum: ["relaxed", "sexy", "fresh", "elegant"],
-    },
-    time: {
-      type: String,
-      required: true,
-      enum: ["day", "night"],
+      enum: ["floral", "gourmand", "oriental", "fresh", "woodsy"],
     },
     gender: {
       type: String,
       required: true,
       enum: ["masculine", "unisex", "feminine"],
-    },
-    occassion: {
-      type: String,
-      required: true,
-      enum: ["work", "sport", "romance", "lifestyle"],
     },
     ingredients: {
       type: String,

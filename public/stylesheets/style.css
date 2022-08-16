@@ -7,9 +7,28 @@ a {
   color: #00b7ff;
 }
 
-h1 {
-  color: 15px;
+p {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 14px;
   text-align: center;
+}
+
+h1 {
+  font-size: 15px;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 30px;
+  color: #848486;
+  padding: 60px 0px 30px;
+  line-height: 30px;
+  letter-spacing: 1px;
+
+}
+
+h3 {
+
+ font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #848486;
 }
 
 .nav-container {
