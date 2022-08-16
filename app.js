@@ -31,7 +31,7 @@ const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
 
 const contactRouter = require("./routes/contact.routes");
-app.use("/views", contactRouter);
+app.use("/contact", contactRouter);
 
 const baseRouter = require("./routes/Base.routes");
 app.use("/wizard", baseRouter);
