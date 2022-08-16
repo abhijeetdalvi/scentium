@@ -1,17 +1,20 @@
-
+<h2>If you do not have an account</h2>
 <h2>Create an account</h2>
 <form action="/auth/signup" method="POST">
    <label> First name
-      <input type="text" name="firstname">
+      <input type="text" name="firstName">
    </label>
    <label> Last name
-      <input type="text" name="lastnme">
+      <input type="text" name="lastName">
    </label>
    <label> Email
       <input type="email" name="email">
    </label>
    <label> Password
       <input type="password" name="password">
+   </label>
+   <label> Confirm Password
+      <input type="password" name="confirmPassword">
    </label>
 
    <button type="submit">Submit</button>
@@ -28,6 +31,40 @@
 
    <button type="submit">Submit</button>
 </form>
+
+{{!-- <div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form action="/auth/signup" method="post">
+			<h1>Create Account</h1>
+			<input type="text" placeholder="Name" />
+			<input type="email" placeholder="Email" />
+			<input type="password" placeholder="Password" />
+			<button>Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form action="/auth/login" method="post">
+			<h1>Sign in</h1>
+			<input type="email" placeholder="Email" />
+			<input type="password" placeholder="Password" />
+			<button>Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Dear, Guest!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div> --}}
 
 {{#if errorMessage}}
    {{errorMessage}}

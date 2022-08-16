@@ -19,17 +19,52 @@ router.get("/signup", isLoggedOut, (req, res) => {
 });
 
 router.post("/signup", isLoggedOut, (req, res) => {
-  const { username, password } = req.body;
+  const { firstName, lastName, email, password, confirmPassword } = req.body;
 
-  if (!username) {
+  if (!firstName) {
     return res.status(400).render("auth/signup", {
-      errorMessage: "Please provide your username.",
+      errorMessage: "Please provide your first name.",
+      ...req.body,
+    });
+  }
+
+  if (!lastName) {
+    return res.status(400).render("auth/signup", {
+      errorMessage: "Please provide your last name.",
+      ...req.body,
+    });
+  }
+
+  if (!email) {
+    return res.status(400).render("auth/signup", {
+      errorMessage: "Please provide your valid email.",
+      ...req.body,
+    });
+  }
+  if (!email.includes("@")) {
+    return res.status(400).render("auth/signup", {
+      emailError: "This is not a valid email",
+      ...req.body,
+    });
+  }
+  if (password !== confirmPassword) {
+    return res.status(400).render("auth/signup", {
+      passwordError: "Your password doesn't match",
+      ...req.body,
+    });
+  }
+
+  if (!password) {
+    return res.status(400).render("auth/signup", {
+      errorMessage: "Please create eight character password",
+      ...req.body,
     });
   }
 
   if (password.length < 8) {
     return res.status(400).render("auth/signup", {
       errorMessage: "Your password needs to be at least 8 characters long.",
+      ...req.body,
     });
   }
 
@@ -45,13 +80,13 @@ router.post("/signup", isLoggedOut, (req, res) => {
   }
   */
 
-  // Search the database for a user with the username submitted in the form
-  User.findOne({ username }).then((found) => {
+  // Search the database for a user with the email submitted in the form
+  User.findOne({ email }).then((duplicateEmail) => {
     // If the user is found, send the message username is taken
-    if (found) {
+    if (duplicateEmail) {
       return res
         .status(400)
-        .render("auth.signup", { errorMessage: "Username already taken." });
+        .render("auth/signup", { errorMessage: "Email already exists." });
     }
 
     // if user is not found, create a new user - start with hashing the password
@@ -61,7 +96,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((hashedPassword) => {
         // Create a user and save it in the database
         return User.create({
-          username,
+          email,
           password: hashedPassword,
         });
       })
@@ -79,7 +114,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
         if (error.code === 11000) {
           return res.status(400).render("auth/signup", {
             errorMessage:
-              "Username need to be unique. The username you chose is already in use.",
+              "It seems that you already have an account with us. Sign in with your password.",
           });
         }
         return res
@@ -94,11 +129,18 @@ router.get("/login", isLoggedOut, (req, res) => {
 });
 
 router.post("/login", isLoggedOut, (req, res, next) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  if (!username) {
+  if (!email) {
     return res.status(400).render("auth/login", {
-      errorMessage: "Please provide your username.",
+      errorMessage: "Please provide your valid email.",
+    });
+  }
+
+  if (!email.includes("@")) {
+    return res.status(400).render("auth/login", {
+      emailError: "This is not a valid email",
+      ...req.body,
     });
   }
 
@@ -110,8 +152,15 @@ router.post("/login", isLoggedOut, (req, res, next) => {
     });
   }
 
-  // Search the database for a user with the username submitted in the form
-  User.findOne({ username })
+  if (!password) {
+    return res.status(400).render("auth/login", {
+      errorMessage: "Please create eight character password",
+      ...req.body,
+    });
+  }
+
+  // Search the database for a user with the email submitted in the form
+  User.findOne({ email })
     .then((user) => {
       // If the user isn't found, send the message that user provided wrong credentials
       if (!user) {

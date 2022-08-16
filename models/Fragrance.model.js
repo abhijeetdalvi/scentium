@@ -39,6 +39,6 @@ const fragranceSchema = new Schema(
   }
 );
 
-const Fragrance = model("User", fragranceSchema);
+const FragranceModel = mongoose.model("Fragrance", fragranceSchema);
 
-module.exports = User;
+module.exports = FragranceModel;
