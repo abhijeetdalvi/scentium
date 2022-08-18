@@ -2,25 +2,25 @@
 <h2>Create an account</h2>
 <form action="/auth/signup" method="POST">
    <label> First name
-      <input type="text" name="firstName">
+      <input type="text" name="firstName" value="{{firstName}}">
    </label>
    <label> Last name
-      <input type="text" name="lastName">
+      <input type="text" name="lastName" value="{{lastName}}">
    </label>
    <label> Email
-      <input type="email" name="email">
+      <input type="email" name="email" value="{{email}}">
    </label>
    <label> Password
-      <input type="password" name="password">
+      <input type="password" name="password" value="{{password}}">
    </label>
    <label> Confirm Password
-      <input type="password" name="confirmPassword">
+      <input type="password" name="confirmPassword" value="{{confirmPassword}}">
    </label>
 
    <button type="submit">Submit</button>
 </form>
 
-<h2>I have an account</h2>
+{{!-- <h2>I have an account</h2>
 <form action="/auth/signup" method="POST">
    <label> Email
       <input type="email" name="email">
@@ -30,7 +30,7 @@
    </label>
 
    <button type="submit">Submit</button>
-</form>
+</form> --}}
 
 {{!-- <div class="container" id="container">
 	<div class="form-container sign-up-container">

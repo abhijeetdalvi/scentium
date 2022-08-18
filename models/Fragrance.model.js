@@ -5,18 +5,13 @@ const fragranceSchema = new Schema(
   {
     base: {
       type: String,
-      required: true,
+      //required: true,
       enum: ["floral", "gourmand", "oriental", "fresh", "woodsy"],
     },
-    gender: {
+    top: {
       type: String,
-      required: true,
-      enum: ["masculine", "unisex", "feminine"],
-    },
-    ingredients: {
-      type: String,
-      required: true,
-      enum: ["aquatic", "aromatic", "fruit", "floral", "woody", "spices"],
+      //required: true,
+      enum: ["sensual", "confident", "sexy", "comforting", "peaceful"],
     },
   },
   {
@@ -24,6 +19,6 @@ const fragranceSchema = new Schema(
   }
 );
 
-const FragranceModel = mongoose.model("Fragrance", fragranceSchema);
+const FragranceModel = model("Fragrance", fragranceSchema);
 
 module.exports = FragranceModel;

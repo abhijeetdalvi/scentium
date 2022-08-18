@@ -81,9 +81,9 @@ router.post("/signup", isLoggedOut, (req, res) => {
   */
 
   // Search the database for a user with the email submitted in the form
-  User.findOne({ email }).then((duplicateEmail) => {
+  User.findOne({ email }).then((possibleUser) => {
     // If the user is found, send the message username is taken
-    if (duplicateEmail) {
+    if (possibleUser) {
       return res
         .status(400)
         .render("auth/signup", { errorMessage: "Email already exists." });
@@ -100,16 +100,16 @@ router.post("/signup", isLoggedOut, (req, res) => {
           password: hashedPassword,
         });
       })
-      .then((user) => {
+      .then((createdUser) => {
         // Bind the user to the session object
-        req.session.user = user;
-        res.redirect("/");
+        req.session.user = createdUser._id;
+        res.redirect(`/user/${createdUser._id}`);
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
           return res
             .status(400)
-            .render("auth/signup", { errorMessage: error.message });
+            .render("/auth/signup", { errorMessage: error.message });
         }
         if (error.code === 11000) {
           return res.status(400).render("auth/signup", {

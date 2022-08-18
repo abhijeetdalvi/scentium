@@ -17,8 +17,9 @@ userRouter.get("/:userId", (req, res) => {
         return res.redirect("/");
       }
       console.log("possibleUser:", possibleUser);
-      res.render("/user/myaccount", {
+      res.render("/user", {
         user: possibleUser,
+        userId: req.params.userId,
       });
     })
     .catch((err) => {

@@ -36,8 +36,14 @@ app.use("/contact", contactRouter);
 const baseRouter = require("./routes/Base.routes");
 app.use("/wizard", baseRouter);
 
+const topRouter = require("./routes/top.routes");
+app.use("/wizard", topRouter);
+
 const aboutRouter = require("./routes/about.routes");
 app.use("/views", aboutRouter);
+
+const userRouter = require("./routes/user.routes");
+app.use("/user", userRouter);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
