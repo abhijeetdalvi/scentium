@@ -12,17 +12,30 @@ baseRouter.get("/custom-base", (req, res) => {
 });
 
 baseRouter.post("/custom-base", (req, res) => {
-  const { flora, gourmand, oriental, fresh, woodsy } = req.body;
+  // const {
+  //   floral,
+  //   gourmand,
+  //   oriental,
+  //   fresh,
+  //   woodsy,
+  //   sensual,
+  //   confident,
+  //   sexy,
+  //   comforting,
+  //   peaceful,
+  // } = req.body;
 
   const baseString = "floral";
+  const topString = "sensual";
 
   FragranceModel.create({
     base: baseString,
-  }).then((createdBase) => {
+    top: topString,
+  }).then((createdBaseAndTop) => {
     UserModel.findByIdAndUpdate(
       req.session.userId,
       {
-        $push: { customFragranceOrdered: createdBase._id },
+        $push: { customFragranceOrdered: createdBaseAndTop._id },
       },
       {
         new: true,
@@ -30,10 +43,10 @@ baseRouter.post("/custom-base", (req, res) => {
     )
       .then((updatedUser) => {
         console.log("updatedUser:", updatedUser);
-        res.render("wizard/custom-top", { createdBase });
+        res.render("wizard/custom-ready", { createdBaseAndTop });
       })
       .catch((err) => {
-        console.log("error while creating the base", err);
+        console.log("error while creating the base and top", err);
         res.redirect("wizard/custom-base");
       });
   });

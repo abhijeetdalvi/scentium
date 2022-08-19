@@ -20,11 +20,13 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    customFragranceOrdered: [{
-      type: mongoose.Types.ObjectId,
-      ref: "Fragrance",
-    },
-  ],
+
+    customFragranceOrdered: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Fragrance",
+      },
+    ],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
@@ -35,3 +37,20 @@ const userSchema = new Schema(
 const UserModel = model("User", userSchema);
 
 module.exports = UserModel;
+
+// cart: {
+//   items: [
+//     {
+//       productId: {
+//         type: mongoose.SchemaType.ObjectId,
+//         ref: "Product",
+//         required: true,
+//       },
+//       quantity: {
+//         type: Number,
+//         required: true,
+//       },
+//     },
+//   ],
+//   totalPrice: Number,
+// },

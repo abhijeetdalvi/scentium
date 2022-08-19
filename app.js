@@ -36,8 +36,11 @@ app.use("/contact", contactRouter);
 const baseRouter = require("./routes/Base.routes");
 app.use("/wizard", baseRouter);
 
-const topRouter = require("./routes/top.routes");
-app.use("/wizard", topRouter);
+// const topRouter = require("./routes/top.routes");
+// app.use("/wizard", topRouter);
+
+const readyRouter = require("./routes/ready.routes");
+app.use("/wizard", readyRouter);
 
 const aboutRouter = require("./routes/about.routes");
 app.use("/views", aboutRouter);
