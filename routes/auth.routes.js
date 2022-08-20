@@ -1,4 +1,4 @@
-const router = require("express").Router();
+const authRouter = require("express").Router();
 
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");
@@ -14,13 +14,12 @@ const User = require("../models/User.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.get("/signup", isLoggedOut, (req, res) => {
+authRouter.get("/signup", (req, res) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", isLoggedOut, (req, res) => {
+authRouter.post("/signup", (req, res) => {
   const { firstName, lastName, email, password, confirmPassword } = req.body;
-  console.log("here we go");
 
   if (!firstName) {
     return res.status(400).render("auth/signup", {
@@ -58,6 +57,13 @@ router.post("/signup", isLoggedOut, (req, res) => {
   if (!password) {
     return res.status(400).render("auth/signup", {
       errorMessage: "Please create eight character password",
+      ...req.body,
+    });
+  }
+
+  if (!confirmPassword) {
+    return res.status(400).render("auth/signup", {
+      errorMessage: "Confirm passsword must match with the password",
       ...req.body,
     });
   }
@@ -104,14 +110,14 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((createdUser) => {
         // Bind the user to the session object
         req.session.user = createdUser._id;
-        req.session.userRole = createdUser.userRole;
+        //req.session.userRole = createdUser.userRole;
         res.redirect(`/user/${createdUser._id}`);
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
           return res
             .status(400)
-            .render("/auth/signup", { errorMessage: error.message });
+            .render("auth/signup", { errorMessage: error.message });
         }
         if (error.code === 11000) {
           return res.status(400).render("auth/signup", {
@@ -126,11 +132,11 @@ router.post("/signup", isLoggedOut, (req, res) => {
   });
 });
 
-router.get("/login", isLoggedOut, (req, res) => {
+authRouter.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login");
 });
 
-router.post("/login", isLoggedOut, (req, res, next) => {
+authRouter.post("/login", isLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email) {
@@ -192,7 +198,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
     });
 });
 
-router.get("/logout", isLoggedIn, (req, res) => {
+authRouter.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       return res
@@ -203,4 +209,4 @@ router.get("/logout", isLoggedIn, (req, res) => {
   });
 });
 
-module.exports = router;
+module.exports = authRouter;

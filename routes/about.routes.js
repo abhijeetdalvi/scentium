@@ -5,8 +5,8 @@ const mongoose = require("mongoose");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-aboutRouter.get("/about", isLoggedIn, (req, res) => {
-  res.render("/views/about");
+aboutRouter.get("/", isLoggedOut, (req, res) => {
+  res.render("about");
 });
 
 module.exports = aboutRouter;

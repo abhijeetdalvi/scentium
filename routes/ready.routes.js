@@ -37,6 +37,11 @@ readyRouter.post("/custom-ready", (req, res) => {
   //         res.redirect("wizard/custom-ready");
   //       });
   //   });
+
+  // .then((updatedUser) => {
+  //   console.log("updatedUser:", updatedUser);
+  //   res.render("wizard/custom-ready", { createdBaseAndTop });
+  // })
 });
 
 module.exports = readyRouter;
