@@ -12,8 +12,8 @@ userRouter.get("/:userId", (req, res) => {
     return res.redirect("/");
   }
 
-  UserModel.findById(req.params.userId);
-  populate("customFragranceOrdered")
+  UserModel.findById(req.params.userId)
+    .populate("customFragranceOrdered")
     .then((possibleUser) => {
       if (!possibleUser) {
         return res.redirect("/");
