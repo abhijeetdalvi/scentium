@@ -14,11 +14,11 @@ const User = require("../models/User.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-authRouter.get("/signup", (req, res) => {
+authRouter.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
-authRouter.post("/signup", (req, res) => {
+authRouter.post("/signup", isLoggedOut, (req, res) => {
   const { firstName, lastName, email, password, confirmPassword } = req.body;
 
   if (!firstName) {
@@ -86,7 +86,7 @@ authRouter.post("/signup", (req, res) => {
     });
   }
   */
-
+  console.log("abhijeet");
   // Search the database for a user with the email submitted in the form
   User.findOne({ email }).then((possibleUser) => {
     // If the user is found, send the message username is taken
@@ -103,11 +103,14 @@ authRouter.post("/signup", (req, res) => {
       .then((hashedPassword) => {
         // Create a user and save it in the database
         return User.create({
+          firstName,
+          lastName,
           email,
           password: hashedPassword,
         });
       })
       .then((createdUser) => {
+        //.log("user created:", createdUser);
         // Bind the user to the session object
         req.session.user = createdUser._id;
         //req.session.userRole = createdUser.userRole;

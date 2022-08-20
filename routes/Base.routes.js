@@ -3,11 +3,11 @@ const baseRouter = require("express").Router();
 const mongoose = require("mongoose");
 
 //const isLoggedOut = require("../middleware/isLoggedOut");
-//const isLoggedIn = require("../middleware/isLoggedIn");
+const isLoggedIn = require("../middleware/isLoggedIn");
 const FragranceModel = require("../models/Fragrance.model");
 const UserModel = require("../models/User.model");
 
-baseRouter.get("/custom-base", (req, res) => {
+baseRouter.get("/custom-base", isLoggedIn, (req, res) => {
   res.render("wizard/custom-base");
 });
 
