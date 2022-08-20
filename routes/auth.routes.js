@@ -20,6 +20,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 router.post("/signup", isLoggedOut, (req, res) => {
   const { firstName, lastName, email, password, confirmPassword } = req.body;
+  console.log("here we go");
 
   if (!firstName) {
     return res.status(400).render("auth/signup", {
@@ -103,6 +104,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((createdUser) => {
         // Bind the user to the session object
         req.session.user = createdUser._id;
+        req.session.userRole = createdUser.userRole;
         res.redirect(`/user/${createdUser._id}`);
       })
       .catch((error) => {

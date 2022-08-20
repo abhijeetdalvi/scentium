@@ -21,6 +21,12 @@ const userSchema = new Schema(
       required: true,
     },
 
+    userRole: {
+      type: String,
+      enum: ["NORMAL", "ADMIN"],
+      default: "NORMAL",
+    },
+
     customFragranceOrdered: [
       {
         type: mongoose.Types.ObjectId,
