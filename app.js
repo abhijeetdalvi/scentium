@@ -45,6 +45,9 @@ app.use("/wizard", readyRouter);
 const aboutRouter = require("./routes/about.routes");
 app.use("/about", aboutRouter);
 
+const processRouter = require("./routes/process.routes");
+app.use("/process", processRouter);
+
 const userRouter = require("./routes/user.routes");
 app.use("/user", userRouter);
 

@@ -1,14 +1,23 @@
+<body class="login-body">
+
+<div class="wrapper">
+	<div class="container">
+
 <h1>I have an account</h1>
-<form action="/auth/login" method="POST">
+<form class="form" action="/auth/login" method="POST">
 <label> Email
-<input type="email" name="email">
+<input type="email" name="email" placeholder="email">
 </label>
 <label> Password
-<input type="password" name="password">
+<input type="password" name="password" placeholder="password">
 </label>
 
 <button type="submit">Submit</button>
 </form>
+
+    </div>
+</div>
+
 
 {{#if errorMessage}}
 {{errorMessage}}

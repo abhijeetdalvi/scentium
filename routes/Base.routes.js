@@ -7,14 +7,14 @@ const isLoggedIn = require("../middleware/isLoggedIn");
 const FragranceModel = require("../models/Fragrance.model");
 const UserModel = require("../models/User.model");
 
-baseRouter.get("/custom-base", isLoggedIn, (req, res) => {
+baseRouter.get("/custom-base", (req, res) => {
   res.render("wizard/custom-base");
 });
 
-baseRouter.post("/custom-base", (req, res) => {
+baseRouter.post("/custom-base", isLoggedIn, (req, res) => {
   // const {
   //   floral,
-  //   gourmand,
+  //   gourmand
   //   oriental,
   //   fresh,
   //   woodsy,
