@@ -3,3 +3,19 @@
 <h2>Welcome to your personal space</h2>
 
 <p>You will find all your orders here</p>
+
+{{!-- <p>{{user.customFragranceOrdered}}</p> --}}
+<p>Your order details are:{{user.customFragranceOrdered}}</p>
+
+<ul>
+    {{#each user.customFragranceOrdered}}
+    <li>
+        {{base}}
+        {{top}}
+    </li>
+    {{/each}}
+</ul>
+
+<h3>
+<a class="fcc-btn" href="http://localhost:3000/wizard/custom-base">CREATE YOUR CUSTOM SCENT</a> 
+</h3>

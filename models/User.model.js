@@ -27,12 +27,21 @@ const userSchema = new Schema(
       default: "NORMAL",
     },
 
-    customFragranceOrdered: [
-      {
-        type: mongoose.Types.ObjectId,
-        ref: "Fragrance",
-      },
-    ],
+    customFragranceOrdered: {
+      items: [
+        {
+          fragranceId: {
+            type: mongoose.Types.ObjectId,
+            ref: "Fragrance",
+            required: true,
+          },
+          qty: {
+            type: Number,
+            required: true,
+          },
+        },
+      ],
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
@@ -43,20 +52,3 @@ const userSchema = new Schema(
 const UserModel = model("User", userSchema);
 
 module.exports = UserModel;
-
-// cart: {
-//   items: [
-//     {
-//       productId: {
-//         type: mongoose.SchemaType.ObjectId,
-//         ref: "Product",
-//         required: true,
-//       },
-//       quantity: {
-//         type: Number,
-//         required: true,
-//       },
-//     },
-//   ],
-//   totalPrice: Number,
-// },

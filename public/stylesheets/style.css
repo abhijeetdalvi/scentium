@@ -149,11 +149,11 @@ footer {
 }
 	
 	/* ::-webkit-input-placeholder { /* WebKit browsers */
-		font-family: 'Source Sans Pro', sans-serif;
+		/* font-family: 'Source Sans Pro', sans-serif;
 		color:    white;
 		font-weight: 300;
-	}
-	 */
+	} */
+	 
 
 /* .wrapper{
 	background:#50a3a2;
@@ -237,6 +237,6 @@ background: linear-gradient(to bottom right, #c8942c 0%, #f7f7f9 100%);
 		
 		/* button:hover {
 			background-color: rgb(245, 247, 249);
-		} */ */
+		} */
 /**********************login form css***********************/
 			

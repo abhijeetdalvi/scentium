@@ -2,6 +2,8 @@ const { Router } = require("express");
 const { isValidObjectId } = require("mongoose");
 const { populate } = require("../models/Fragrance.model");
 const UserModel = require("../models/User.model");
+const FragranceModel = require("../models/Fragrance.model");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
 const userRouter = Router();
 

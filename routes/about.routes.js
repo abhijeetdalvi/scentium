@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-aboutRouter.get("/", isLoggedOut, (req, res) => {
+aboutRouter.get("/", (req, res) => {
   res.render("about");
 });
 

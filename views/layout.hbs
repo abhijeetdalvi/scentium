@@ -12,17 +12,9 @@
       <nav>
         <div>SCENTIUM</div>
         <ul class="nav-links">
-          {{#if isloggedOut}}
+          {{!-- {{#if isloggedOut}} --}}
 
-           <li>
-            <a href="/auth/settings">LOGOUT |</a>
-          </li>
-
-          <li>
-            <a href="/auth/logout">LOGOUT |</a>
-          </li>
-         
-          {{else}}
+          {{!-- {{else}} --}}
 
            <li>
             <a href="/">| HOME</a>
@@ -33,17 +25,23 @@
           <li>
             <a href="/process">| PROCESS</a>
           </li>
-           {{!-- <li>
-            <a href="/wizard/custom-base">| CUSTOM SCENT</a>
-          </li> --}}
           <li>
             <a href="/auth/signup">| MY ACCOUNT</a>
           </li>
-          <li>
+           <li>
+            <a href="/auth/settings">SETTINGS |</a>
+          </li>
+          {{!-- <li>
             <a href="/contact">| CONTACT |</a>
+          </li> --}}
+          {{!-- <li>
+            <a href="/user/:userId"> MY SPACE</a>
+          </li> --}}
+           <li>
+            <a href="/auth/logout">LOGOUT |</a>
           </li>
 
-          {{/if}}
+          {{!-- {{/if}} --}}
         </ul>
       </nav>
     </div>

@@ -9,6 +9,7 @@ const saltRounds = 10;
 
 // Require the User model in order to interact with the database
 const User = require("../models/User.model");
+const FragranceModel = require("../models/Fragrance.model");
 
 // Require necessary (isLoggedOut and isLiggedIn) middleware in order to control access to specific routes
 const isLoggedOut = require("../middleware/isLoggedOut");
@@ -115,6 +116,7 @@ authRouter.post("/signup", isLoggedOut, (req, res) => {
         req.session.user = createdUser._id;
         //req.session.userRole = createdUser.userRole;
         res.redirect(`/user/${createdUser._id}`);
+        //res.redirect(`/user/myaccount`);
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
