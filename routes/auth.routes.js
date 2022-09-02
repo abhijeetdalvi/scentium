@@ -116,7 +116,6 @@ authRouter.post("/signup", isLoggedOut, (req, res) => {
         req.session.user = createdUser._id;
         //req.session.userRole = createdUser.userRole;
         res.redirect(`/user/${createdUser._id}`);
-        //res.redirect(`/user/myaccount`);
       })
       .catch((error) => {
         if (error instanceof mongoose.Error.ValidationError) {
@@ -189,9 +188,10 @@ authRouter.post("/login", isLoggedOut, (req, res, next) => {
             errorMessage: "Wrong credentials.",
           });
         }
-        req.session.user = user;
-        // req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
-        return res.redirect("/");
+        //req.session.user = user;
+        req.session.user = user._id; // ! better and safer but in this case we saving the entire user object
+        res.redirect(`/user/${user._id}`);
+        //return res.redirect("/");
       });
     })
 

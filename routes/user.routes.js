@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const { isValidObjectId } = require("mongoose");
-const { populate } = require("../models/Fragrance.model");
+//const { populate } = require("../models/Fragrance.model");
 const UserModel = require("../models/User.model");
-const FragranceModel = require("../models/Fragrance.model");
-const isLoggedIn = require("../middleware/isLoggedIn");
+//const FragranceModel = require("../models/Fragrance.model");
+//const isLoggedIn = require("../middleware/isLoggedIn");
 
 const userRouter = Router();
 
@@ -16,13 +16,13 @@ userRouter.get("/:userId", (req, res) => {
 
   UserModel.findById(req.params.userId)
     .populate("customFragranceOrdered")
-    .then((possibleUser) => {
-      if (!possibleUser) {
+    .then((createdUser) => {
+      if (!createdUser) {
         return res.redirect("/");
       }
-      console.log("possibleUser:", possibleUser.customFragranceOrdered);
+      console.log("createdUser:", createdUser.customFragranceOrdered);
       res.render("user/myaccount", {
-        user: possibleUser,
+        user: createdUser,
         userId: req.params.userId,
       });
     })

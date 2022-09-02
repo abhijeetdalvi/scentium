@@ -1,4 +1,5 @@
 const baseRouter = require("express").Router();
+const { isValidObjectId } = require("mongoose");
 
 const mongoose = require("mongoose");
 
@@ -12,18 +13,7 @@ baseRouter.get("/custom-base", isLoggedIn, (req, res) => {
 });
 
 baseRouter.post("/custom-base", isLoggedIn, (req, res) => {
-  // const {
-  //   floral,
-  //   gourmand
-  //   oriental,
-  //   fresh,
-  //   woodsy,
-  //   sensual,
-  //   confident,
-  //   sexy,
-  //   comforting,
-  //   peaceful,
-  // } = req.body;
+  const { quantity } = req.body;
 
   const baseString = "floral";
   const topString = "sensual";
@@ -31,9 +21,11 @@ baseRouter.post("/custom-base", isLoggedIn, (req, res) => {
   FragranceModel.create({
     base: baseString,
     top: topString,
+    quantity,
   }).then((createdBaseAndTop) => {
+    console.log(req.session.user);
     UserModel.findByIdAndUpdate(
-      req.session.userId,
+      req.session.user,
       {
         $push: { customFragranceOrdered: createdBaseAndTop._id },
       },
@@ -43,7 +35,8 @@ baseRouter.post("/custom-base", isLoggedIn, (req, res) => {
     )
       .then((updatedUser) => {
         console.log("updatedUser:", updatedUser);
-        res.render("wizard/custom-ready", { createdBaseAndTop });
+        const { _id, customFragranceOrdered } = updatedUser;
+        res.render("wizard/custom-ready", { _id, customFragranceOrdered });
       })
       .catch((err) => {
         console.log("error while creating the base and top", err);
@@ -51,8 +44,6 @@ baseRouter.post("/custom-base", isLoggedIn, (req, res) => {
       });
   });
 });
-
-//
 
 baseRouter.get("/:orderId", (req, res) => {
   const { orderId } = req.params;
@@ -62,29 +53,15 @@ baseRouter.get("/:orderId", (req, res) => {
   });
 });
 
-baseRouter.get("/:orderId/request", isLoggedIn, (req, res) => {
-  const isValidOrderId = isValidObjectId(req.params.orderId);
-
-  if (!isValidOrderId) {
-    return res.status(404).redirect("/fragrance/order");
-  }
-
-  FragranceModel.findById(req.params.orderId).then((possibleOrder) => {
-    if (!possibleOrder) {
-      return res.status(400).redirect("fragrance/order");
-    }
-  });
-});
-
 baseRouter.get("/:orderId/cancel", isLoggedIn, async (req, res) => {
   const { orderId } = req.params;
   const isValidOrderId = isValidObjectId(orderId);
 
   if (!isValidOrderId) {
-    return res.status(404).redirect("/fragrance/order");
+    return res.status(404).redirect(`/user/${user._id}`);
   }
 
-  const { userId } = req.session;
+  const { userId } = req.session.user;
 
   const possibleUser = await UserModel.findOne({
     _id: userId,
@@ -92,12 +69,23 @@ baseRouter.get("/:orderId/cancel", isLoggedIn, async (req, res) => {
   });
 
   if (!possibleUser) {
-    return res.status(400).redirect("/fragrance/order");
+    return res.status(400).redirect(`/user/${user._id}`);
   }
 
-  await UserModel.findByIdAndUpdate(userId, {
-    $pull: { customFragranceOrdered: orderId },
-  });
+  await UserModel.findByIdAndDelete(userId, {
+    customFragranceOrdered: orderId,
+  })
+    .then((success) => {
+      console.log("Order cancelled:", success.orderId);
+    })
+
+    .catch((error) => {
+      console.error("order did not cancel");
+    });
+
+  res.redirect(`/user/${user._id}`);
+
+  console.log(possibleUser);
 });
 
 module.exports = baseRouter;

@@ -1,9 +1,16 @@
 <h1>Congratulations! Your have successfully ordered your custom fragrance.</h1>
 
+{{#if createdBaseAndTop}}
+
+<h1>Congratulations! Your have successfully ordered your custom fragrance.</h1>
+<h2> Click <a href="/fragrance/{{createdBaseAndTop._id}}"></a></h2>
+
+{{/if}}
+
 <div>
 <img src="/images/istockphoto-160052159-612x612.jpg" width="250" height="200">
 </div>
 
 <h2>Your custom scent will be blend fresh and sent for you to enjoy</h2>
 
-<a href="http://localhost:3000/user/myaccount">Check your order details here</a>
+<a href="http://localhost:3000/user/{{_id}}">Check your order details here</a>

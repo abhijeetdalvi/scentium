@@ -27,21 +27,13 @@ const userSchema = new Schema(
       default: "NORMAL",
     },
 
-    customFragranceOrdered: {
-      items: [
-        {
-          fragranceId: {
-            type: mongoose.Types.ObjectId,
-            ref: "Fragrance",
-            required: true,
-          },
-          qty: {
-            type: Number,
-            required: true,
-          },
-        },
-      ],
-    },
+    customFragranceOrdered: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Fragrance",
+        required: true,
+      },
+    ],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

@@ -1,20 +1,25 @@
-<h1>{{user.firstName}},</h1>
+<h1>Hello {{user.firstName}},</h1>
 
 <h2>Welcome to your personal space</h2>
 
-<p>You will find all your orders here</p>
+<h3>You will find all your orders here</h3>
 
-{{!-- <p>{{user.customFragranceOrdered}}</p> --}}
-<p>Your order details are:{{user.customFragranceOrdered}}</p>
-
-<ul>
+<table>
+<ol>
     {{#each user.customFragranceOrdered}}
+    
     <li>
         {{base}}
         {{top}}
+       <h4> Quantity: {{quantity}}</h4>
     </li>
-    {{/each}}
-</ul>
+    
+    <h3>Do you wish to cancel your order? <a href="fragrance/{{_id}}/cancel">Cancel here</a></h3>
+
+{{/each}}
+</ol>
+</table>
+
 
 <h3>
 <a class="fcc-btn" href="http://localhost:3000/wizard/custom-base">CREATE YOUR CUSTOM SCENT</a> 

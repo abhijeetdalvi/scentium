@@ -20,6 +20,9 @@ const fragranceSchema = new Schema(
       type: mongoose.Types.ObjectId,
       ref: "User",
     },
+    quantity: {
+      type: Number,
+    },
   },
   {
     timestamps: true,
