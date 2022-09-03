@@ -53,39 +53,41 @@ baseRouter.get("/:orderId", (req, res) => {
   });
 });
 
-baseRouter.get("/:orderId/cancel", isLoggedIn, async (req, res) => {
+baseRouter.get("/fragrance/:orderId/cancel", isLoggedIn, async (req, res) => {
   const { orderId } = req.params;
+  console.log(orderId);
   const isValidOrderId = isValidObjectId(orderId);
 
   if (!isValidOrderId) {
-    return res.status(404).redirect(`/user/${user._id}`);
+    return res.status(404).redirect(`/user/${req.session.user}`);
   }
 
-  const { userId } = req.session.user;
+  //const { userId } = req.session.user;
 
   const possibleUser = await UserModel.findOne({
-    _id: userId,
+    _id: req.session.user,
     $in: { customFragranceOrdered: orderId },
   });
 
   if (!possibleUser) {
-    return res.status(400).redirect(`/user/${user._id}`);
+    return res.status(400).redirect(`/user/${req.session.user}`);
   }
 
-  await UserModel.findByIdAndDelete(userId, {
-    customFragranceOrdered: orderId,
+  await UserModel.findByIdAndUpdate(req.session.user, {
+    $pull: { customFragranceOrdered: orderId },
+  });
+
+  await FragranceModel.findByIdAndDelete(orderId, {
+    _id: isValidOrderId,
   })
     .then((success) => {
       console.log("Order cancelled:", success.orderId);
     })
-
     .catch((error) => {
       console.error("order did not cancel");
     });
 
-  res.redirect(`/user/${user._id}`);
-
-  console.log(possibleUser);
+  res.redirect(`/user/${req.session.user}`);
 });
 
 module.exports = baseRouter;
