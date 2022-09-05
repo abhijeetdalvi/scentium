@@ -1,74 +1,35 @@
-<h1>If you do not have an account</h1>
-<h1>Create an account</h1>
-<form action="/auth/signup" method="POST">
-   <label> First name
-      <input type="text" name="firstName" value="{{firstName}}">
-   </label>
-   <label> Last name
-      <input type="text" name="lastName" value="{{lastName}}">
-   </label>
-   <label> Email
-      <input type="email" name="email" value="{{email}}">
-   </label>
-   <label> Password
-      <input type="password" name="password" value="{{password}}">
-   </label>
-   <label> Confirm Password
-      <input type="password" name="confirmPassword" value="{{confirmPassword}}">
-   </label>
+<html>
+<head>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {{!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> --}}
+  <title>Sign in</title>
+</head>
 
-   <button type="submit">Submit</button>
-</form>
+<body>
+  <div class="main1" >
+    <p class="sign1" align="center">Create an account</p>
+    <form class="form1" action="/auth/signup" method="POST">
+    <input type="text" class="un" name="firstName" placeholder="first name" value="{{firstName}}" />
+     <input type="text" class="un" name="lastName" placeholder="last name" value="{{lastName}}" />
 
-{{!-- <h1>I have an account</h1>
-<a href="http://localhost:3000/auth/login">LOGIN</a> --}}
+      <input class="un " type="email" align="center" placeholder="email" name="email">
+      <input class="pass" type="password" align="center" placeholder="password" name="password">
+      <input class="pass" type="password" align="center" placeholder="confirm password" name="confirmPassword">
 
-{{!-- <h2>I have an account</h2>
-<form action="/auth/signup" method="POST">
-   <label> Email
-      <input type="email" name="email">
-   </label>
-   <label> Password
-      <input type="password" name="password">
-   </label>
+      <button class= "submit" type="submit">Signup</button>
+      {{!-- <a class="submit" align="center">Sign in</a> --}}
+      {{!-- <p class="forgot" align="center"><a href="http://localhost:3000/auth/signup">Create your account</p> --}}
+            
+    </form>        
+    </div>
+     
+</body>
 
-   <button type="submit">Submit</button>
-</form> --}}
-
-{{!-- <div class="container" id="container">
-	<div class="form-container sign-up-container">
-		<form action="/auth/signup" method="post">
-			<h1>Create Account</h1>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
-		</form>
-	</div>
-	<div class="form-container sign-in-container">
-		<form action="/auth/login" method="post">
-			<h1>Sign in</h1>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign In</button>
-		</form>
-	</div>
-	<div class="overlay-container">
-		<div class="overlay">
-			<div class="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button class="ghost" id="signIn">Sign In</button>
-			</div>
-			<div class="overlay-panel overlay-right">
-				<h1>Dear, Guest!</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<button class="ghost" id="signUp">Sign Up</button>
-			</div>
-		</div>
-	</div>
-</div> --}}
+</html>
 
 {{#if errorMessage}}
    {{errorMessage}}
 {{/if}}
+

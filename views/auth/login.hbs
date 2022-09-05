@@ -1,26 +1,28 @@
-<body class="login-body">
+<html>
+<head>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  {{!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> --}}
+  <title>Sign in</title>
+</head>
 
-<div class="wrapper">
-	<div class="container">
-
-<h1>I have an account</h1>
-<form class="form" action="/auth/login" method="POST">
-<label> Email
-<input type="email" name="email" placeholder="email">
-</label>
-<label> Password
-<input type="password" name="password" placeholder="password">
-</label>
-
-<button type="submit">Submit</button>
-</form>
-
+<body>
+  <div class="main" >
+    <p class="sign" align="center">Sign in</p>
+    <form class="form1" action="/auth/login" method="POST">
+      <input class="un " type="email" align="center" placeholder="email" name="email">
+      <input class="pass" type="password" align="center" placeholder="password" name="password">
+      <button class= "submit" type="submit">Submit</button>
+      {{!-- <a class="submit" align="center">Sign in</a> --}}
+      <p class="forgot" align="center"><a href="http://localhost:3000/auth/signup">Create your account</p>
+            
+    </form>        
     </div>
-</div>
+     
+</body>
 
-<h1>If you do not have an account</h1>
-<a href="http://localhost:3000/auth/signup">CREATE YOUR ACCOUNT</a>
-
+</html>
 
 {{#if errorMessage}}
 {{errorMessage}}
