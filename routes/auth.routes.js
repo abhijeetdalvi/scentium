@@ -1,4 +1,5 @@
 const authRouter = require("express").Router();
+const aValueStoredInHakunaMatataJs = { name: "timon" };
 
 // ℹ️ Handles password encryption
 const bcrypt = require("bcrypt");

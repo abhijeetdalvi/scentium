@@ -19,6 +19,8 @@ async function checkUserexists(req, res, next) {
   }
 
   req.session.user = user;
+  req.abhijeet = user;
+  //console.log(user);
 
   next();
 }
@@ -26,12 +28,11 @@ async function checkUserexists(req, res, next) {
 settingsRouter.use(isLoggedIn);
 settingsRouter.use(checkUserexists);
 
-// settingsRouter.get("/", (req, res) => {
-//   res.render("settings/profile");
-// });
-
 settingsRouter.get("/profile", async (req, res) => {
-  res.render("settings/profile");
+  res.render("settings/profile", {
+    user: req.user,
+  });
+  //console.log("wassup");
 });
 
 const updateUserSchema = z.object({
@@ -40,8 +41,12 @@ const updateUserSchema = z.object({
   email: z.string().email(),
 });
 
+//console.log("updateschema");
+
 settingsRouter.post("/profile", async (req, res) => {
   const { firstName = "", lastName = "", email = "" } = req.body;
+
+  console.log(req.body);
 
   if (firstName.length < 4) {
     return res.status(400).render("settings/profile", {
@@ -65,22 +70,24 @@ settingsRouter.post("/profile", async (req, res) => {
   }
 
   const singleUser = await UserModel.findOne({
-    $or: [{ firstName }, { lastName }, { email }],
-    _id: { $ne: ObjectId(req.session.user) },
+    $or: [{ email }],
+    _id: { $ne: ObjectId(req.abhijeet._id) },
   });
 
+  console.log("HERE: ", req.session);
+
   if (!singleUser) {
-    await UserModel.findByIdAndUpdate(req.session.user, {
+    await UserModel.findByIdAndUpdate(req.abhijeet._id, {
       firstName,
       lastName,
       email,
     });
-    return res.redirect(`/user/${req.session.user}`);
+    return res.redirect(`/user/${req.abhijeet._id}`);
   }
 
   UserModel.find({
     _id: {
-      $nin: [ObjectId(req.session.user)],
+      $nin: [ObjectId(req.abhijeet._id)],
       $or: [{ email }],
     },
   });
@@ -93,11 +100,11 @@ settingsRouter.post("/profile", async (req, res) => {
 // ****** To update the password ******//
 
 settingsRouter.get("/profile", async (req, res) => {
-  res.render("settings/profile", { user: req.user });
+  res.render("settings/profile", { user: req.abhijeet });
 });
 
 settingsRouter.post("/profile", async (req, res) => {
-  const { user } = req;
+  const { abhijeet: user } = req;
 
   const {
     currentPassword = "",
