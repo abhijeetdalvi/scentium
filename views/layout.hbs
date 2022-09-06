@@ -12,11 +12,18 @@
       <nav>
         <div>SCENTIUM</div>
         <ul class="nav-links">
-          {{!-- {{#if isloggedOut}} --}}
-
-          {{!-- {{else}} --}}
-
+          {{#if isloggedOut}}
            <li>
+            <a href="/user/{{_id}}">| MY PROFILE</a>
+          </li>
+           <li>
+            <a href="/settings/profile">| SETTINGS |</a>
+          </li>
+          <li>
+            <a href="/auth/logout">LOGOUT |</a>
+          </li>
+          {{else}}
+          <li>
             <a href="/">| HOME</a>
           </li>
           <li>
@@ -28,20 +35,12 @@
           <li>
             <a href="/auth/login">| MY ACCOUNT</a>
           </li>
-           <li>
-            <a href="/user/{{_id}}">| MY PROFILE</a>
-          </li>
-           <li>
-            <a href="/settings/profile">| SETTINGS |</a>
-          </li>
           <li>
             <a href="/contact">| CONTACT |</a>
           </li>
-           <li>
-            <a href="/auth/logout">LOGOUT |</a>
-          </li>
+           
 
-          {{!-- {{/if}} --}}
+          {{/if}}
         </ul>
       </nav>
     </div>

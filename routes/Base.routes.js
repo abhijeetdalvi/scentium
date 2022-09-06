@@ -62,8 +62,6 @@ baseRouter.get("/fragrance/:orderId/cancel", isLoggedIn, async (req, res) => {
     return res.status(404).redirect(`/user/${req.session.user}`);
   }
 
-  //const { userId } = req.session.user;
-
   const possibleUser = await UserModel.findOne({
     _id: req.session.user,
     $in: { customFragranceOrdered: orderId },
