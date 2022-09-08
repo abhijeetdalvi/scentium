@@ -3,8 +3,11 @@
 
 
 body {
-  padding: 50px;
+  /* padding: 50px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
 }
 
 a {
@@ -12,18 +15,17 @@ a {
 }
 
 p {
-  font-family: "Open Sans";;
+  font-family: "Open Sans";
   font-size: 14px;
   text-align: center;
 }
 
 h1 {
-  font-size: 15px;
-  text-align: center;
-  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 30px;
+  text-align: center;
+  font-family: "Open Sans";
   color: #848486;
-  padding: 60px 0px 30px;
+  padding: 10px 0px 10px;
   line-height: 30px;
   letter-spacing: 1px;
 }
@@ -31,7 +33,6 @@ h1 {
 .page-title {
 	text-align: center;
 	font-weight: normal;
-
 }
 
 h3 {
@@ -51,19 +52,12 @@ h4 {
     font-size: 14px;
     word-wrap: break-word;
 }
-
-.history {
-	font-family: "Open Sans";
-    line-height: 26px;
-    letter-spacing: 0.5px;
-    color: #888888;
-    font-size: 14px;
-	background-color: #f7f7f9;
-	padding: 40px, 0px;
-	margin: 0px 0px 50px;
-    font-weight: normal;
-    font-style: normal;
-}
+/* 
+.slider {
+  display: block;
+  justify-content: center;
+  margin-left: 10%;
+} */
 
 .history-description {
 	display: flex;
@@ -71,6 +65,7 @@ h4 {
 	flex-direction: row;
 	gap: 4rem;
 	flex-wrap: wrap;
+  text-align: center;
 }
 
 .nav-container {
@@ -86,7 +81,7 @@ nav {
   align-items: center;
   padding: 0.8rem 1rem;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  line-height: 75px;
+  line-height: 25px;
 }
 nav > ul {
   list-style-type: none;
@@ -98,18 +93,12 @@ nav > ul {
 
 .home-card {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   flex-direction: row;
-  gap: 5rem;
+  padding: 3%;
+  text-align: center;
 }
 
-.card-text {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  gap: 10rem;
-  margin-left: 1rem;
-}
 footer {
   text-align: center;
   background-color: #ffffff;;
@@ -119,10 +108,9 @@ footer {
 .process {
 
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-evenly;
 	flex-direction: row;
 	text-align: center;
-
 }
 
 .fcc-btn {
@@ -402,3 +390,143 @@ body{margin-top:20px;
     height: 375px;
     width: 60%;
   }
+
+/********************** product home page css starts ***********************/
+  .wrapper {
+    height: 420px;
+    width: 654px;
+    margin: 50px auto;
+    border-radius: 7px 7px 7px 7px;
+    /* VIA CSS MATIC https://goo.gl/cIbnS */
+    -webkit-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 14px 32px 0px rgba(0, 0, 0, 0.15);
+  }
+  
+  .product-img {
+    float: left;
+    height: 420px;
+    width: 327px;
+  }
+  
+  .product-img img {
+    border-radius: 7px 0 0 7px;
+  }
+  
+  .product-info {
+    float: left;
+    height: 420px;
+    width: 327px;
+    border-radius: 0 7px 10px 7px;
+    background-color: #ffffff;
+  }
+  
+  .product-text {
+    height: 300px;
+    width: 327px;
+  }
+  
+  .product-text h1 {
+    margin: 0 0 0 38px;
+    padding-top: 52px;
+    font-size: 34px;
+    color: #474747;
+  }
+  
+  .product-text h1,
+  .product-price-btn p {
+    font-family: 'Bentham', serif;
+  }
+  
+  .product-text h2 {
+    margin: 0 0 47px 38px;
+    font-size: 13px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #d2d2d2;
+    letter-spacing: 0.2em;
+  }
+  
+  .product-text p {
+    height: 125px;
+    margin: 0 0 0 38px;
+    font-family: "Open Sans";
+    color: #8d8d8d;
+    line-height: 1.7em;
+    font-size: 15px;
+    font-weight: lighter;
+    overflow: hidden;
+  }
+  
+  .product-price-btn {
+    height: 103px;
+    width: 327px;
+    margin-top: 17px;
+    position: relative;
+  }
+  
+  .product-price-btn p {
+    display: inline-block;
+    position: absolute;
+    top: -13px;
+    height: 50px;
+    font-family: 'Trocchi', serif;
+    margin: 0 0 0 38px;
+    font-size: 28px;
+    font-weight: lighter;
+    color: #474747;
+  }
+  
+  span {
+    display: inline-block;
+    height: 50px;
+    font-family: 'Suranna', serif;
+    font-size: 34px;
+  }
+  
+  .product-price-btn button {
+    float: right;
+    display: inline-block;
+    height: 50px;
+    width: 176px;
+    margin: 0 40px 0 16px;
+    box-sizing: border-box;
+    border: transparent;
+    border-radius: 60px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #ffffff;
+    background-color: #9cebd5;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .product-price-btn button:hover {
+    background-color: #79b0a1;
+  }
+
+/********************** video css starts ***********************/
+
+.parent {
+  display: grid;
+  justify-content: center;
+}
+
+.visual {
+  aspect-ratio: 16 / 9;
+}
+
+.card {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+
+
+  
