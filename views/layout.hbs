@@ -15,11 +15,6 @@
         </div>
         <ul class="nav-links">
           {{#if isloggedOut}}
-
-          
-
-         
-
           {{else}}
           <li>
             <a href="/">HOME</a>
@@ -34,20 +29,16 @@
           <li>
             <a href="/auth/login">| MY ACCOUNT</a>
           </li>
-           <li>
+          
+          <li>
             <a href="/settings/profile">| SETTINGS</a>
           </li>
-
-           <li>
-            <a href="/auth/logout">|  LOGOUT</a>
-          </li> 
-          
-           {{!-- <li>
-            <a href="/user/{{userId}}">| MY PROFILE</a>
-          </li> --}}
           <li>
             <a href="/contact">| CONTACT</a>
           </li>
+          <li>
+            <a href="/auth/logout">|  LOGOUT</a>
+          </li> 
          
 
           {{/if}}
